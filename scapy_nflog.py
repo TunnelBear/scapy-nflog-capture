@@ -45,7 +45,7 @@ class NFLOGListenSocket(SuperSocket):
 		self.nflog.start()
 		self.ins = self.nflog.pipe_chk
 
-	def recv(self, bufsize):
+	def recv(self, bufsize=65535):
 		self.ins.read(1) # used only for poll/sync
 		pkt, ts = self.nflog.pipe.popleft()
 		if pkt is None: return
